@@ -1,12 +1,17 @@
 package cn.edu.hcnu.system;
 
+import java.util.List;
+
+/**
+ * 订单信息
+ * **/
 public class Order {
-    private String id;
+    private String id;//订单编号
     private float jcs;//机场税
     private float hkzhx;//航空综合险
     private float jpgqx;//机票改签险
     private float yhj;//优惠劵
-
+    private List<Customer> list;//预定机票乘客
     public String getId() {
         return id;
     }

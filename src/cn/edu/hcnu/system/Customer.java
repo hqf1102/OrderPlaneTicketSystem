@@ -1,10 +1,12 @@
 package cn.edu.hcnu.system;
 
 import java.util.Date;
-
+/**
+ * 乘客信息
+ * **/
 public class Customer{
     private String id;//编号
-    private String name;//乘客类型
+    private String name;//乘客姓名
     private String customerType;//乘客类型
     private String phone;//电话
     private String cardId;//身份证号

@@ -1,14 +1,25 @@
 package cn.edu.hcnu.system;
 
 import java.util.Date;
-
+/**
+ * 航班信息
+ * **/
 public class Flight {
     private String id;
+    private String aircraftModel;//飞机型号
     private float orderPrice;//单价
     private Date departureTime;//出发时间
     private Date arrivalimeT;//到达时间
     private String from;//出发站
     private String to;//达到站
+
+    public String getAircraftModel() {
+        return aircraftModel;
+    }
+
+    public void setAircraftModel(String aircraftModel) {
+        this.aircraftModel = aircraftModel;
+    }
 
     public String getId() {
         return id;
