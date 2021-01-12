@@ -12,6 +12,15 @@ public class Flight {
     private Date arrivalimeT;//到达时间
     private String from;//出发站
     private String to;//达到站
+    private String flightDuration;//航班时长
+
+    public String getFlightDuration() {
+        return flightDuration;
+    }
+
+    public void setFlightDuration(String flightDuration) {
+        this.flightDuration = flightDuration;
+    }
 
     public String getAircraftModel() {
         return aircraftModel;

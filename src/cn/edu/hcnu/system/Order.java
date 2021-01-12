@@ -1,6 +1,7 @@
 package cn.edu.hcnu.system;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 订单信息
@@ -11,7 +12,16 @@ public class Order {
     private float hkzhx;//航空综合险
     private float jpgqx;//机票改签险
     private float yhj;//优惠劵
-    private List<Customer> list;//预定机票乘客
+    private Set<Customer> customerSet;//预定机票乘客
+
+    public Set<Customer> getCustomerSet() {
+        return customerSet;
+    }
+
+    public void setCustomerSet(Set<Customer> customerSet) {
+        this.customerSet = customerSet;
+    }
+
     public String getId() {
         return id;
     }
