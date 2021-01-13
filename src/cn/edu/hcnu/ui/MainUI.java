@@ -6,7 +6,10 @@ import cn.edu.hcnu.bll.Impl.IFlightServiceImpl;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainUI {
     public static void main(String[] args) {
@@ -45,10 +48,37 @@ public class MainUI {
                     iFlightService.insertFlight(flight);
                 } catch (SQLException e) {
                     String erromassage = e.getMessage();
-                    String erro = erromassage.substring(0, 9);
-                    String erros = erromassage;
-                    System.out.println(erromassage);
-                    System.out.println(erro);
+                    if(erromassage.startsWith("ORA-12899")){
+                        //按指定的模式查找字符串（正则表达式规则）
+                     /* String pattern = "(\\w+-\\d{5}):(\\s\\w+)+\\s(\"\\w+\")\\.(\"\\w+\")\\.(\"\\w+\")";*/
+                      //ORA-12899: 列 "ROOT"."FLIGHT"."ID" 的值太大 (实际值: 32, 最大值: 30)
+                       //String pattern="(\\w+-\\d{5}):(\\s.\\s)(\"\\w+\")\\.(\"\\w+\")\\.(\"\\w+\")";
+                        String pattern="\\.(\"\\w+\")\\.(\"\\w+\")";
+                        //创建Pattern对象
+                        Pattern pr=Pattern.compile(pattern);
+                        //创建mather对象
+                        Matcher matcher=pr.matcher(erromassage);
+                        if(matcher.find()){
+                            String tableName= matcher.group(1);
+                            String columnName=matcher.group(2);
+                            System.out.println(tableName + "表的" + columnName + "这一列的值过大请仔细检查！");
+                        }
+
+
+                    }
+
+                }
+
+            }else if (choice==2){
+                IFlightService iFlightService = new IFlightServiceImpl();
+                Set<Flight> flightSet= null;
+                try {
+                    flightSet = iFlightService.getAllFlights();
+                    for (Flight flight:flightSet){
+                        System.out.println(flight);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
 
             }

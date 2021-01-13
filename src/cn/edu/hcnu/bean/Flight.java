@@ -54,7 +54,6 @@ public class Flight {
         this.id = id;
     }
 
-
     public String getDepartureTime() {
         return departureTime;
     }
