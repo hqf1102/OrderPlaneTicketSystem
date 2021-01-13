@@ -1,6 +1,7 @@
-package cn.edu.hcnu.system;
+package cn.edu.hcnu.bean;
 
 import java.util.Date;
+
 /**
  * 乘客信息
  * **/
