@@ -22,23 +22,22 @@ public class IFlightServiceImpl implements IFlightService {
 
     @Override
     public Set<Flight> getAllFlights() throws SQLException {
-        Set<Flight> allFlights = iFlightDao.getAllFlights();
-        return allFlights;
+        return  iFlightDao.getAllFlights();
     }
 
     @Override
-    public Flight getFlightByDepartureTime(String departureTime) {
-        return null;
+    public Set<Flight>getFlightByDepartureTime(String departureTime) throws SQLException {
+        return iFlightDao.getFlightByDepartureTime(departureTime);
     }
 
     @Override
-    public Flight getFlightByDepartureAirport(String departureAirport) {
-        return null;
+    public Set<Flight> getFlightByDepartureAirport(String departureAirport) throws SQLException {
+        return iFlightDao.getFlightByDepartureAirport(departureAirport);
     }
 
     @Override
-    public Flight getFlightByDestinationAirport(String destinationAirport) {
-        return null;
+    public Set<Flight> getFlightByDestinationAirport(String destinationAirport) throws SQLException {
+        return iFlightDao.getFlightByDestinationAirport(destinationAirport);
     }
 
     @Override

@@ -23,24 +23,22 @@ public class MainUI {
             System.out.println("按6，退出系统：");
             int choice = scanner.nextInt();
             if (choice == 1) {
+                /**
+                 * 功能进行航班信息的录入，实现航班的（航班编号、飞机型号、航班座位数、出发机场、目的机场、出发时间等）
+                 * **/
                 String uuid = UUID.randomUUID().toString();
                 String id = uuid.replace("-", "");
-                System.out.println("UUID=" + id);
-                System.out.println("输入航班编号：");
+                System.out.print("输入航班编号：");
                 String flight_id = scanner.next();
-
-                System.out.println("请输入飞机型号：");
+                System.out.print("请输入飞机型号：");
                 String aircraftModel = scanner.next();
-
-                System.out.println("请输入座位数：");
+                System.out.print("请输入座位数：");
                 int currentSeats = scanner.nextInt();
-
-                System.out.println("请输入出发机场：");
+                System.out.print("请输入出发机场：");
                 String departureAirport = scanner.next();
-
-                System.out.println("请输入目的机场：");
+                System.out.print("请输入目的机场：");
                 String destinationAirport = scanner.next();
-                System.out.println("出发时间：");
+                System.out.print("出发时间：");
                 String departureTime = scanner.next();
                 Flight flight = new Flight(id, flight_id, currentSeats, aircraftModel, departureTime, departureAirport, destinationAirport);
                 IFlightService iFlightService = new IFlightServiceImpl();
@@ -63,13 +61,14 @@ public class MainUI {
                             String columnName=matcher.group(2);
                             System.out.println(tableName + "表的" + columnName + "这一列的值过大请仔细检查！");
                         }
-
-
                     }
 
                 }
 
             }else if (choice==2){
+                /**
+                 *功能查询所有的航班信息
+                 * **/
                 IFlightService iFlightService = new IFlightServiceImpl();
                 Set<Flight> flightSet= null;
                 try {
@@ -81,6 +80,78 @@ public class MainUI {
                     e.printStackTrace();
                 }
 
+            }else if(choice==3){
+                /**
+                 *功能是查询航班信息
+                 * */
+                System.out.println("查询航班通过以下查询方式进行查询:");
+                System.out.println("1，通过起飞时间进行查询:");
+                System.out.println("2，通过座位号进行查询:");
+                System.out.println("3，通过起飞机场进行查询:");
+                System.out.println("4，通过目的机场进行查询：");
+                int choose=scanner.nextInt();
+                if(choose==1){
+                    /**
+                     * 通过条件查询航班信息（起飞时间、起飞机场、目的机场、座位号进行查询）
+                     * **/
+                    System.out.print("请输入起飞时间：");
+                    IFlightService iFlightService = new IFlightServiceImpl();
+                    try {
+                        Set<Flight> flights= iFlightService.getFlightByDepartureTime(scanner.next());
+                        if(flights.size()>0){
+                            for (Flight flight:flights){
+                                System.out.println(flight);
+                            }
+                        }else{
+                           System.out.println("未查到该时间的航班信息");
+                       }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                }else if(choose==2){
+
+                }else if(choose==3){
+
+                    System.out.print("请输入起飞机场：");
+                    IFlightService iFlightService = new IFlightServiceImpl();
+                    try {
+                        Set<Flight> flights= iFlightService.getFlightByDepartureAirport(scanner.next());
+                        if(flights.size()>0){
+                            for (Flight flight:flights){
+                                System.out.println(flight);
+                            }
+                        }else{
+                            System.out.println("未找到你想要的航班信息");
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else if(choose==4){
+                    System.out.print("请输入目的机场：");
+                    IFlightService iFlightService = new IFlightServiceImpl();
+
+                    try {
+                        Set<Flight> flights= iFlightService.getFlightByDestinationAirport(scanner.next());
+                        if(flights.size()>0){
+                            for (Flight flight:flights){
+                                System.out.println(flight);
+                            }
+                        }else{
+                            System.out.println("未找到你想要的航班信息");
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }else if (choice==4){
+
+            }else if (choice==5){
+
+            }else if (choice==6){
+                break;
             }
 
 

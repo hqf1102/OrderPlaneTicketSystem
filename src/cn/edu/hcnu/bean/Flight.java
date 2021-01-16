@@ -12,6 +12,15 @@ public class Flight {
     private String departureAirport;//出发站
     private String destinationAirport;//达到站
 
+    public Flight(String flight_id, int currentSeats, String aircraftModel, String departureTime, String departureAirport, String destinationAirport) {
+        this.flight_id = flight_id;
+        this.currentSeats = currentSeats;
+        this.aircraftModel = aircraftModel;
+        this.departureTime = departureTime;
+        this.departureAirport = departureAirport;
+        this.destinationAirport = destinationAirport;
+    }
+
     public Flight(String id, String flight_id, int currentSeats, String aircraftModel, String departureTime, String departureAirport, String destinationAirport) {
         this.id = id;
         this.flight_id = flight_id;
@@ -81,12 +90,12 @@ public class Flight {
     @Override
     public String toString() {
         return "Flight{" +
-                "flight_id='" + flight_id + '\'' +
-                ", currentSeats=" + currentSeats +
-                ", aircraftModel='" + aircraftModel + '\'' +
-                ", departureTime='" + departureTime + '\'' +
-                ", departureAirport='" + departureAirport + '\'' +
-                ", destinationAirport='" + destinationAirport + '\'' +
+                "航班编号='" + flight_id + '\'' +
+                ", 航班座位数=" + currentSeats +
+                ", 航班机型='" + aircraftModel + '\'' +
+                ", 起飞时间='" + departureTime + '\'' +
+                ", 出发机场='" + departureAirport + '\'' +
+                ", 目的机场='" + destinationAirport + '\'' +
                 '}';
     }
 }
